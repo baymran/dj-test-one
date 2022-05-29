@@ -1,0 +1,4 @@
+/venv/
+test_one/media/
+/.idea/
+*.py[co]
