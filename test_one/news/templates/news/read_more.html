@@ -12,11 +12,16 @@
 
 {#   CONTENT   #}
 {% block content %}
+    <a style="text-decoration-skip-ink: auto;" href="{{ news_item.category.get_absolute_url }}">
+        <button type="button" class="btn btn-outline-secondary btn-sm">
+            Назад
+        </button>
+    </a>
     <div class="div" style="margin: 15px auto; max-width: 900px;">
     <div class="card md-5" style="max-width: 900px;">
         <div class="row g-0">
             <div class="col-md-4">
-                {% if item.photo %}
+                {% if news_item.photo %}
                     <img src="{{ news_item.photo.url }}" class="img-fluid rounded-start" alt="...">
                 {% else %}
                     <img src="" class="img-fluid rounded-start" alt="...">
@@ -28,7 +33,7 @@
                         <p style="margin: 0 auto; display: block">Категория: </p>
                         <a style="text-decoration-skip-ink: auto;" href="{{ news_item.category.get_absolute_url }}">
                             <button type="button" class="btn btn-outline-secondary btn-sm">
-                                {{ item.category }}
+                                {{ news_item.category }}
                             </button>
                         </a>
                     </div>
