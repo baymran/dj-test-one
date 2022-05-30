@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class News(models.Model):
@@ -18,6 +19,9 @@ class News(models.Model):
         verbose_name_plural = 'Новости'
         ordering = ['-created_at']
 
+    def get_absolute_url(self):
+        return reverse('read_more', kwargs={'news_id': self.pk})
+
 class Category(models.Model):
     title = models.CharField(max_length=150, db_index=True, verbose_name='Наименование категории')
 
@@ -28,3 +32,11 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
         ordering = ['title']
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'category_id': self.pk})
+
+
+
+
+

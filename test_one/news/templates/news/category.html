@@ -1,45 +1,16 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>{{ category.title }} | Новости</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
 
-{#    navbar    #}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-md">
-            <a class="navbar-brand" href="{% url 'index' %}">Новости</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">
-                            Features
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="col-md-2">
-    <ul class="list-group">
-        {% for category in categories %}
-            <a href="{% url 'category' category.pk %}" class="list-group-item list-group-item-action" aria-current="true">
-                {{ category.title }}
-            </a>
-        {% endfor %}
-    </ul>
-    </div>
-{#    for-cycle   #}
-    {% for item in news %}
+{#   TITLE   #}
+{% block title %}
+    {{ category.title }} | Новости
+{% endblock title %}
+{#   SIDEBAR   #}
+{% block sidebar %}
+    {% include 'inc/_sidebar.html' %}
+{% endblock sidebar %}
+{#   CONTENT   #}
+{% block content %}
+{% for item in news %}
     <div class="div" style="margin: 15px auto; max-width: 900px;">
     <div class="card md-5" style="max-width: 900px;">
         <div class="row g-0">
@@ -58,16 +29,13 @@
                     <h5 class="card-title">{{ item.title }}</h5>
                     <p class="card-text">{{ item.content|linebreaks|truncatewords:40 }}</p>
                     <p class="card-text"><small class="text-muted">{{ item.created_at|date:"z-Y (l) H:i e" }}</small></p>
-                    <div class="div" style="display: flex; justify-content: end">
-                        <button type="button" class="btn btn-primary btn-sm">Читать...</button>
-                    </div>
+                    <a style="text-decoration-skip-ink: auto;" href="{{ item.get_absolute_url }}">
+                            <button type="button" class="btn btn-primary btn-sm">Читать...</button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
     </div>
     {% endfor %}
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
-</html>
+{% endblock content %}

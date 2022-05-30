@@ -1,0 +1,18 @@
+{% load news_tags %}
+{% cats as categories %}
+
+{% comment %}
+<div class="col-md-2">
+    <ul class="list-group">
+        {% for category in categories %}
+            <a href="{% url 'category' category.pk %}" class="list-group-item list-group-item-action" aria-current="true">
+                {{ category.title }}
+            </a>
+        {% endfor %}
+    </ul>
+</div>
+{% endcomment %}
+
+<br>
+
+{% show_categories %}
