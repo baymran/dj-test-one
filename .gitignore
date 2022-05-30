@@ -1,4 +1,6 @@
 /venv/
 test_one/media/
+test_one/static/
+test_one/test_one/static/
 /.idea/
 *.py[co]
