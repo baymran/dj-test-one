@@ -12,7 +12,7 @@ class News(models.Model):
     category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, blank=True, verbose_name='Категория')
 
     def __str__(self):
-        return f'{self.title}, {self.pk}'
+        return f'OBJECT: <{self.title}, id:{self.pk}>'
 
     class Meta:
         verbose_name = 'Новость'

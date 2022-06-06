@@ -12,12 +12,12 @@
 
 {#   CONTENT   #}
 {% block content %}
-    <a style="text-decoration-skip-ink: auto;" href="{{ news_item.category.get_absolute_url }}">
+    <div class="div" style="margin: 15px auto; max-width: 900px;">
+    <a style="text-decoration-skip-ink: auto;" href="{% url 'index' %}">
         <button type="button" class="btn btn-outline-secondary btn-sm">
             Назад
         </button>
     </a>
-    <div class="div" style="margin: 15px auto; max-width: 900px;">
     <div class="card md-5" style="max-width: 900px;">
         <div class="row g-0">
             <div class="col-md-4">

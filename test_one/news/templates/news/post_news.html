@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{#   TITLE   #}
+{% block title %}
+    {{ title }} | НОВОСТИ
+{% endblock title %}
+
+{% block sidebar %}
+
+{% endblock sidebar %}
+
+{#   CONTENT   #}
+{% block content %}
+<a style="text-decoration-skip-ink: auto" href="{% url 'index' %}">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+        Назад
+    </button>
+</a>
+<h1 style="text-align: center">Добавление новости</h1>
+<form action="" style="margin: 0 auto; margin-bottom: 100px; width: 400px">
+    {% csrf_token %}
+{#    {{ form.as_p }}     #}
+{% comment %}
+<div style="width: 400px" class="mb-3">
+    <label for="{{ form.title.id_for_label }}" class="form-label">Название: </label>
+    {{ form.title }}
+    <div class="invalid-feedback">
+        {{ form.title.errors }}
+    </div>
+</div>
+<div style="width: 400px" class="mb-3">
+    <label for="{{ form.content.id_for_label }}" class="form-label">Текст:</label>
+    {{ form.content }}
+    <div class="invalid-feedback">
+        {{ form.content.errors }}
+    </div>
+</div>
+<div style="width: 400px; display: flex" class="mb-3">
+    <label for="{{ form.is_published.id_for_label }}" class="form-label">Опубликовано:</label>
+    <div class="form-check form-switch">
+        {{ form.is_published }}
+    </div>
+    <div class="invalid-feedback">
+        {{ form.is_published.errors }}
+    </div>
+</div>
+<div style="width: 400px" class="mb-3">
+    <label for="{{ form.category.id_for_label }}" class="form-label">Категория: </label>
+    {{ form.category }}
+    <div class="invalid-feedback">
+        {{ form.category.errors }}
+    </div>
+</div>
+{% endcomment %}
+{% for field in form %}
+    {{ field.label_tag }}
+    {{ field }}
+    <ul class="error-list">
+        {{ field.errors }}
+    </ul>
+    <hr>
+
+{% endfor %}
+    <button type="submit" class="btn btn-success" formmethod="post">Добавить</button>
+</form>
+{% endblock content %}
